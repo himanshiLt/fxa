@@ -6,6 +6,9 @@
 
 const config = require('fxa-react/configs/tailwind');
 
-config.content = ['./app/scripts/templates/**/*.mustache'];
+config.content = [
+  './app/scripts/templates/**/*.mustache',
+  './app/server/templates/pages/**/*.html',
+];
 
 module.exports = config;

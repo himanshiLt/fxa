@@ -108,55 +108,11 @@ describe('views/mixins/avatar-mixin', function () {
     });
   });
 
-  describe('displayAccountProfileImage with spinner in avatar settings view', () => {
-    let spinnerView;
-    const SpinnerAvatarSettingsView = SettingsView.extend({
-      template() {
-        return '<div class="avatar-wrapper avatar-settings-view"></div>';
-      },
-    });
-
-    beforeEach(() => {
-      spinnerView = new SpinnerAvatarSettingsView({
-        notifier,
-        user,
-      });
-      sinon
-        .stub(account, 'fetchCurrentProfileImage')
-        .returns(
-          Promise.resolve(
-            new ProfileImage({ id: 'foo', img: new Image(), url: 'url' })
-          )
-        );
-      sinon.stub(spinnerView, '_shouldShowDefaultProfileImage').returns(false);
-      return spinnerView.render();
-    });
-
-    it('adds `spinner-completed` class', () =>
-      spinnerView.displayAccountProfileImage(account).then(() => {
-        assert.equal(
-          spinnerView.$('.avatar-settings-view.spinner-completed').length,
-          1,
-          'expected .avatar-wrapper.avatar-settings-view to also have the .spinner-completed class'
-        );
-        assert.equal(
-          spinnerView.$('.change-avatar-inner').length,
-          1,
-          'expected .change-avatar-inner to exist and have a length equal to 1'
-        );
-        assert.equal(
-          spinnerView.$('.avatar-settings-view.spinner-completed').length,
-          1,
-          'expected .avatar-wrapper.avatar-settings-view to also have the .spinner-completed class'
-        );
-      }));
-  });
-
   describe('displayAccountProfileImage spinner functionality', () => {
     let spinnerView;
     const SpinnerView = SettingsView.extend({
       template() {
-        return '<div class="avatar-wrapper"></div>';
+        return '<div id="avatar-wrapper"></div>';
       },
     });
 
@@ -178,7 +134,7 @@ describe('views/mixins/avatar-mixin', function () {
 
     it('shows the spinner while fetching the profile image', () => {
       spinnerView.displayAccountProfileImage(account, {
-        wrapperClass: '.avatar-wrapper',
+        wrapperId: '#avatar-wrapper',
       });
       assert.equal(
         spinnerView.$('.avatar-spinner').length,
@@ -186,9 +142,9 @@ describe('views/mixins/avatar-mixin', function () {
         'missing .avatar-spinner element'
       );
       assert.equal(
-        spinnerView.$('.avatar-wrapper.with-spinner').length,
+        spinnerView.$('#avatar-wrapper.with-spinner').length,
         1,
-        'expected .avatar-wrapper to also have the .with-spinner class'
+        'expected #avatar-wrapper to also have the .with-spinner class'
       );
     });
 
@@ -197,10 +153,10 @@ describe('views/mixins/avatar-mixin', function () {
       this.timeout(300);
 
       const displayPromise = spinnerView.displayAccountProfileImage(account, {
-        wrapperClass: '.avatar-wrapper',
+        wrapperId: '#avatar-wrapper',
       });
       const spinnerEl = spinnerView.$('.avatar-spinner');
-      assert.equal(spinnerEl.parents('.avatar-wrapper').length, 1);
+      assert.equal(spinnerEl.parents('#avatar-wrapper').length, 1);
 
       // Trigger transitionend events, which would usually be fired via CSS
       setTimeout(() => {
@@ -218,7 +174,7 @@ describe('views/mixins/avatar-mixin', function () {
       }, 1);
 
       return displayPromise.then(() => {
-        assert.equal(spinnerEl.parents('.avatar-wrapper').length, 0);
+        assert.equal(spinnerEl.parents('#avatar-wrapper').length, 0);
       });
     });
 
@@ -229,17 +185,17 @@ describe('views/mixins/avatar-mixin', function () {
       });
 
       const displayPromise = spinnerView.displayAccountProfileImage(account, {
-        wrapperClass: '.avatar-wrapper',
+        wrapperId: '#avatar-wrapper',
       });
       const spinnerEl = spinnerView.$('.avatar-spinner');
       assert.equal(
-        spinnerEl.parents('.avatar-wrapper').length,
+        spinnerEl.parents('#avatar-wrapper').length,
         1,
         'expected to find a spinner'
       );
 
       return displayPromise.then(function () {
-        assert.equal(spinnerEl.parents('.avatar-wrapper').length, 0);
+        assert.equal(spinnerEl.parents('#avatar-wrapper').length, 0);
       });
     });
 
@@ -248,14 +204,14 @@ describe('views/mixins/avatar-mixin', function () {
 
       return spinnerView.displayAccountProfileImage(account).then(() => {
         assert.isFalse(
-          spinnerView.$('.avatar-wrapper').hasClass('with-default')
+          spinnerView.$('#avatar-wrapper').hasClass('with-default')
         );
         assert.isTrue(
-          spinnerView.$('.avatar-wrapper img').hasClass('profile-image')
+          spinnerView.$('#avatar-wrapper img').hasClass('profile-image')
         );
         // this should only be true in the avatar settings view
         assert.isFalse(
-          spinnerView.$('.avatar-wrapper img').hasClass('change-avatar-spinner')
+          spinnerView.$('#avatar-wrapper img').hasClass('change-avatar-spinner')
         );
         assert.isTrue(
           spinnerView.logViewEvent.calledWith('profile_image_shown')
@@ -272,7 +228,7 @@ describe('views/mixins/avatar-mixin', function () {
 
       return spinnerView.displayAccountProfileImage(account).then(() => {
         assert.isTrue(
-          spinnerView.$('.avatar-wrapper').hasClass('with-default')
+          spinnerView.$('#avatar-wrapper').hasClass('with-default')
         );
         assert.isTrue(
           spinnerView.logViewEvent.calledWith('profile_image_not_shown')

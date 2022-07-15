@@ -13,7 +13,7 @@ import sinon from 'sinon';
 
 class View extends BaseView {
   template() {
-    return '<a href="#" id="do-not-sync-device">Do not Sync</a>';
+    return '<a href="#" id="do-not-sync-device" class="link-blue">{{t}}Do not Sync{{t}}</a>';
   }
 
   constructor(options) {

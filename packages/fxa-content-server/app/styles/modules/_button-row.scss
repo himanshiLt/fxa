@@ -1,6 +1,5 @@
-.button,
-.settings-button,
-button {
+// After all .button-rows are converted to TW, we can remove this entire file
+.button {
   @include font();
   align-items: center;
   background: $button-background-color-default;
@@ -39,10 +38,6 @@ button {
       0 0 0 4px rgba(10, 132, 255, 0.3);
   }
 
-  &:focus:active {
-    text-decoration: none;
-  }
-
   &[type='submit']:not(.secondary-button),
   &.primary-button {
     background: $button-background-color-primary;
@@ -57,6 +52,10 @@ button {
     }
   }
 
+  &:focus:active {
+    text-decoration: none;
+  }
+
   &.tertiary-button {
     background: transparent;
     color: $blue-60;
@@ -66,39 +65,6 @@ button {
     }
     &:active {
       color: $blue-80;
-    }
-  }
-
-  &.warning-button {
-    background: $error-background-color;
-    border: 0;
-    color: $message-text-color;
-
-    &:disabled,
-    &:enabled {
-      background: $error-background-color;
-    }
-
-    &:enabled {
-      &:hover {
-        background: $error-background-color-hover;
-      }
-
-      &:active {
-        background: $error-background-color-active;
-      }
-
-      // 'type' is needed for selector specificity
-      &[type='submit'] {
-        &:active,
-        &:active:hover {
-          background: darken($error-background-color, 10);
-        }
-
-        &:hover {
-          background: darken($error-background-color, 5);
-        }
-      }
     }
   }
 
@@ -119,15 +85,4 @@ button {
   .button {
     text-decoration: none;
   }
-}
-
-.button-flex-row {
-  display: flex;
-  flex-direction: row;
-  margin: 0 0 20px;
-}
-
-button::-moz-focus-inner {
-  border: 0;
-  padding: 0;
 }

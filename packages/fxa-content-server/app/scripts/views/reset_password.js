@@ -17,7 +17,7 @@ const t = (msg) => msg;
 
 const ResetPasswordView = FormView.extend({
   events: {
-    'click .remember-password': preventDefaultThen('_rememberPassword'),
+    'click #remember-password': preventDefaultThen('_rememberPassword'),
   },
 
   initialize(options) {
@@ -53,7 +53,7 @@ const ResetPasswordView = FormView.extend({
   },
 
   beforeDestroy() {
-    const email = this.getElementValue('.email');
+    const email = this.getElementValue('#email');
     // The email field is not pre-filled for the reset_password page,
     // but if the user enters an email address, the entered email
     // address should be propagated back to the signin page. If
@@ -66,7 +66,7 @@ const ResetPasswordView = FormView.extend({
   },
 
   submit() {
-    return this._resetPassword(this.getElementValue('.email'));
+    return this._resetPassword(this.getElementValue('#email'));
   },
 
   /**

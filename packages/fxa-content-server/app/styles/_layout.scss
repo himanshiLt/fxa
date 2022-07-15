@@ -1,5 +1,6 @@
 // Two main widths
 // Apply styles to div injected by backbone, rather than to the stage itself.
+
 #main-content {
   position: relative;
   text-align: center;
@@ -37,6 +38,28 @@
     padding: $main-content-padding-top 20px 20px;
     position: relative;
     width: 94%;
+  }
+
+  // TEMP HACK until all template files using #main-content can be converted to TW
+  // or at the very least, until all headers are styled with TW and main-content IDs removed
+  header {
+    margin-bottom: 15px;
+
+    h1 {
+      @include title30();
+      @include header-font();
+      color: $header-color;
+      line-height: 26px;
+      line-height: 1em;
+      margin: 0;
+    }
+
+    h2 {
+      @include title20();
+      font-size: 17px;
+      font-weight: 600;
+      margin: 0;
+    }
   }
 }
 

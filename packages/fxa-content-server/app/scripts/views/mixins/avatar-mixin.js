@@ -36,7 +36,7 @@ const Mixin = {
    * @returns {Promise}
    */
   displayAccountProfileImage(account, options = {}) {
-    const avatarWrapperEl = this.$(options.wrapperClass || '.avatar-wrapper');
+    const avatarWrapperEl = this.$(options.wrapperClass || '#avatar-wrapper');
     avatarWrapperEl.removeClass('spinner-completed');
     let spinnerEl;
 

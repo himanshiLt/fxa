@@ -1,7 +1,7 @@
 .error {
-  @include message-box($error-background-color, $error-text-color);
-  display: none;
-  margin-bottom: 10px;
+  // @include message-box($error-background-color, $error-text-color);
+  // display: none;
+  // margin-bottom: 10px;
 
   #loading-template & {
     position: fixed;
@@ -35,10 +35,6 @@
 }
 
 .progress-hidden {
-  display: none;
-}
-
-.hidden {
   display: none;
 }
 
@@ -207,9 +203,9 @@ div + .error {
 }
 
 // custom state indicators
-#suggest-sync, #suggest-account {
-  /*Pull the message up to bring it closer to the header*/
-  margin: -6px auto 16px;
+#suggest-sync,
+#suggest-account {
+  margin: 0 auto 16px;
 
   .dismiss {
     background-image: url('/images/icon-close.svg');
