@@ -883,7 +883,7 @@ const conf = convict({
       env: 'SUBSCRIPTIONS_SHARED_SECRET',
     },
     stripeApiKey: {
-      default: '',
+      default: 'sk_test_n0Zfe5ajtfKBA6HWd9jZ4qef00nv3tPW9F',
       env: 'SUBHUB_STRIPE_APIKEY',
       format: String,
       doc: 'Stripe API key for direct Stripe integration',

@@ -286,6 +286,11 @@ module.exports = (config, log, Token, UnblockCode = null) => {
     return account;
   };
 
+  DB.prototype.listAllAccounts = async function () {
+    const allAccounts = await Account.listAll({ include: ['emails'] });
+    return allAccounts;
+  };
+
   DB.prototype.devices = async function (uid) {
     log.trace('DB.devices', { uid });
 

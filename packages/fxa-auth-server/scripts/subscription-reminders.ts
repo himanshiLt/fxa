@@ -51,6 +51,7 @@ async function init() {
 }
 
 if (require.main === module) {
+  console.log('################### RUNNING');
   init()
     .catch((err) => {
       console.error(err);
