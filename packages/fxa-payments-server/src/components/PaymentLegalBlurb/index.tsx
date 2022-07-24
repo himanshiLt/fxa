@@ -8,7 +8,7 @@ import LinkExternal from 'fxa-react/components/LinkExternal';
 
 const PaypalPaymentLegalBlurb = () => (
   <div
-    className="payment-legal-blurb"
+    className="payment-legal-blurb clear-both font-medium text-center"
     data-testid="payment-legal-blurb-component"
   >
     <Localized id="payment-legal-copy-paypal">
@@ -35,7 +35,7 @@ const PaypalPaymentLegalBlurb = () => (
 );
 
 const StripePaymentLegalBlurb = () => (
-  <div className="payment-legal-blurb">
+  <div className="payment-legal-blurb clear-both font-medium text-center">
     <Localized id="payment-legal-copy-stripe-2">
       <p>Mozilla uses Stripe for secure payment processing.</p>
     </Localized>
@@ -60,7 +60,7 @@ const StripePaymentLegalBlurb = () => (
 );
 
 const DefaultPaymentLegalBlurb = () => (
-  <div className="payment-legal-blurb">
+  <div className="payment-legal-blurb clear-both font-medium text-center">
     <Localized id="payment-legal-copy-stripe-and-paypal-2">
       <p>Mozilla uses Stripe and PayPal for secure payment processing.</p>
     </Localized>
