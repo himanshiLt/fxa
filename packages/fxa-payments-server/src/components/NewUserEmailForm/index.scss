@@ -1,21 +1,15 @@
 @import '../../../../fxa-content-server/app/styles/variables';
 
 .new-user-email-form {
-    .sign-in-copy {
-        color: $grey-50;
-
-        a {
-            color: $grey-50;
-        }
-    }
-
     .label-text {
-        font-weight: 600;   // font-semibold
+        font-weight: 600;
         font-size: 15px;
         color: $grey-50;
-        display: inline-block;  // inline-block
-        margin-bottom: 7px; //mb-2
+        display: inline-block;
+        margin-bottom: 7px;
         text-align: left;
+
+        // font-semibold text-base text-grey-400 inline-block mb-2 text-left
     }
 
     .input-row--checkbox {
@@ -24,9 +18,13 @@
         margin-bottom: 5px;
         margin-right: 0;
 
+        // mt-6 ml-0 mb-1.5 mr-0
+
         label input[type="checkbox"] {
-            margin-right: 6px;  // mr-1 (1.5 - check if we have custom classes)
-            margin-left: 8px;   // ml-2
+            margin-right: 6px;
+            margin-left: 8px;
+
+            // mr-1.5 ml-2
         }
     }
 }

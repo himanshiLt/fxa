@@ -86,7 +86,7 @@ export const NewUserEmailForm = ({
         elems={{
           a: (
             <a
-              className="underline"
+              className="underline text-grey-400"
               onClick={onClickSignInButton}
               href={signInURL}
             >
@@ -96,12 +96,12 @@ export const NewUserEmailForm = ({
         }}
       >
         <p
-          className="sign-in-copy font-normal -mt-2 ml-6"
+          className="sign-in-copy font-normal -mt-2 ml-6 text-grey-400"
           data-testid="sign-in-copy"
         >
           Already have a Firefox account?{' '}
           <a
-            className="underline"
+            className="underline text-grey-400"
             data-testid="sign-in-link"
             onClick={onClickSignInButton}
             href={signInURL}
