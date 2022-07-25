@@ -28,7 +28,7 @@ const retryButtonFn = (onRetry: PaymentErrorViewProps['actionFn']) =>
     <Localized id="payment-error-retry-button">
       <button
         data-testid="retry-link"
-        className="button retry-link primary-button"
+        className="button retry-link primary-button mb-10"
         onClick={() => onRetry()}
       >
         Try again
@@ -41,7 +41,7 @@ const manageSubButtonFn = (onClick: VoidFunction) => {
     <Localized id="payment-error-manage-subscription-button">
       <button
         data-testid="manage-subscription-link"
-        className="button primary-button"
+        className="button primary-button mb-10"
         onClick={onClick}
       >
         Manage my subscription
@@ -85,24 +85,34 @@ export const PaymentErrorView = ({
     <>
       {title}
       <section
-        className={`container card payment-error ${className}`}
+        className={`container card payment-error bg-white border-t-0 rounded-b-lg mt-0 ${className}`}
         data-testid="payment-error"
       >
-        <div className="wrapper">
-          <img id="error-icon" src={errorIcon} alt="error icon" />
+        <div className="wrapper flex flex-col text-center mb-14">
+          <img
+            className="mt-16 ml-auto mb-10 mr-auto"
+            src={errorIcon}
+            alt="error icon"
+          />
           <div>
             <Localized
               id={getErrorMessage(error)}
               vars={{ productName, ...contentProps }}
             >
-              <p data-testid="error-payment-submission">
+              <p
+                className="m-0 leading-6"
+                data-testid="error-payment-submission"
+              >
                 {getErrorMessage(error)}
               </p>
             </Localized>
           </div>
         </div>
 
-        <div className="footer" data-testid="footer">
+        <div
+          className="footer border-0 flex flex-col justify-center pt-14"
+          data-testid="footer"
+        >
           {/* This error code means the subscription was created successfully, but
           there was an error loading the information on the success screen. In this
           case, we do not want a "Try again" or "Manage subscription" button. */}
