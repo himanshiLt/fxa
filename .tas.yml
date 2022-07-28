@@ -1,4 +1,4 @@
-ostMerge :
+postMerge :
   preRun:
     command:
       - yarn install
