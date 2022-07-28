@@ -1,0 +1,133 @@
+postMerge :
+  preRun:
+    command:
+      - yarn install
+  subModules:
+    - name: browserid-verifier
+        path : "./packages/browserid-verifier/"
+        pattern:
+          - "./tests/*.js"
+        framework : mocha
+        configFile : "./mocharc.yml"
+
+    - name: fxa-admin-panel
+        path : "./packages/fxa-admin-panel/"
+        pattern:
+          - "./server/lib/*.test.ts"
+          - "./server/lib/*/*.test.ts"
+        preRun:
+          command:
+            - yarn build
+        framework : jest
+        configFile : "./server/jest.config.js"
+
+    - name: fxa-admin-server
+        path : "./packages/fxa-admin-server/"
+        pattern:
+          - "./test/app.e2e-spec.ts"
+        preRun:
+          command:
+            - yarn build
+            - yarn compile
+            - yarn gen-keys
+        framework : jest
+        configFile : "./test/jest-e2e.json"
+
+    - name: fxa-admin-server-2
+        path : "./packages/fxa-admin-server/"
+        pattern:
+          - "./src/*/*.spec.ts"
+        preRun:
+          command:
+            - yarn build
+            - yarn compile
+            - yarn gen-keys
+        framework : jest
+
+    - name: fxa-auth-client
+        path : "./packages/fxa-auth-client/"
+        pattern:
+          - "./test/*.ts"
+        preRun:
+          command:
+            - yarn build
+        framework : mocha
+        configFile : "./mocharc.yml"
+
+    - name: fxa-auth-server
+        path : "./packages/fxa-auth-server/"
+        pattern:
+          - "./test/e2e/*_tests.js"
+          - "./test/scripts/*.js"
+        preRun:
+          env:
+            NODE_ENV: dev
+          command:
+            - yarn build
+            - yarn compile
+        framework : mocha
+        configFile : "./.mocharc.js"
+
+    - name: fxa-geodb
+        path : "./packages/fxa-geodb/"
+        pattern:
+          - "./test/*.js"
+        framework : mocha
+
+    - name: fxa-graphql-api
+        path : "./packages/fxa-graphql-api/"
+        pattern:
+          - "./test/app.e2e-spec.ts"
+        framework : jest
+        configFile : "./test/jest-e2e.json"
+
+    - name: fxa-graphql-api-2
+        path : "./packages/fxa-graphql-api/"
+        preRun:
+          command:
+            - yarn prebuild
+            - yarn build
+            - yarn compile
+        pattern:
+          - "./src/**/*.spec.ts"
+        framework : jest
+
+    - name: fxa-payments-server
+        path : "./packages/fxa-payments-server/"
+        preRun:
+          command:
+            - yarn build
+        pattern:
+          - "./server/lib/*.test.js"
+          - "./server/lib/**/*.test.js"
+        framework : jest
+        configFile : "./server/jest.config/js"
+
+    - name: fxa-react
+        path : "./packages/fxa-react/"
+        preRun:
+          command:
+            - yarn build
+        pattern:
+          - "./**/*.test.tsx"
+        framework : jest
+        configFile : "./jest.config/js"
+
+    - name: fxa-shared
+        path : "./packages/fxa-shared/"
+        preRun:
+          command:
+            - yarn build
+        pattern:
+          - "./nestjs/*/*.spec.ts"
+        framework : jest
+
+    - name: fxa-support-panel
+        path : "./packages/fxa-support-panel/"
+        pattern:
+          - "./test/app.e2e-spec.ts"
+        framework : jest
+        configFile : "./test/jest-e2e.json"
+version : 2.0.0
+nodeVersion: 14.18.3
+tier: large

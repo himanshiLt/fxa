@@ -1,4 +1,5 @@
 module.exports = {
+  forceExit: true,
   coveragePathIgnorePatterns: ['<rootDir>'],
   collectCoverageFrom: ['**/*.js', '!**/jest*js'],
   // TO DO: update this file once more server tests are in place

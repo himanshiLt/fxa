@@ -1,5 +1,8 @@
 {
   "name": "functional-tests",
+  "jest": {
+    "preset": "jest-playwright-preset"
+  },
   "version": "1.218.5",
   "private": true,
   "scripts": {
